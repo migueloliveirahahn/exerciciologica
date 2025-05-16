@@ -8,37 +8,34 @@ public class Exercicio4 {
 
     
 public static String substituirVogais(String texto) {
-   char[] caracteres = new char[texto.length()];
-   
-    for (int i = 0; i < texto.length(); i++) {
-    char c = texto.charAt(i);
-   if (c == 'a' || c == 'A' ||
-       c == 'e' || c == 'E' ||
-       c == 'i' || c == 'I' ||
-       c == 'o' || c == 'O' ||
-       c == 'u' || c == 'U') { 
-       caracteres[i] = '*';
-   } else {
-       caracteres [i] = c;
-   }
-}
-    
-   String resultado = "";
-  for (int i = 0; i < caracteres.length; i++) { {
-    resultado += caracteres[i];
-}
-   return resultado;
-}
+  public static int contarVogais(String s) {
+          int contador = 0;
+        s = s.toLowerCase(); 
+        for (char c : s.toCharArray()) {
+        if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+                contador++;
+            }
+        }
+        return contador;
+    }
+public static String maisVogais(String[] palavras) {
+        String comMaisVogais = "";
+        int maxVogais = 0;
+
+        for (String palavra : palavras) {
+            int quantidade = contarVogais(palavra);
+            if (quantidade > maxVogais) {
+                maxVogais = quantidade;
+                comMaisVogais = palavra;
+            }
+        }
+
+        return comMaisVogais;
     }
     public static void main(String[] args) {
-        
-        Scanner ler = new Scanner(System.in);
-        System.out.println("Digite uma frase:");
-        String entrada = ler.nextLine();
-
-        String modificada = substituirVogais(entrada);
-
-        System.out.println("Frase com vogais substituídas: " + modificada);
-        ler.close();
+        String[] palavras = {"cachorro", "mediocre", "universos", "python", "palavra"};
+        String resultado = maisVogais(palavras);
+        System.out.println("String com mais vogais: " + resultado);
     }
 }
+       
